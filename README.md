@@ -4,6 +4,8 @@ This is version 0.3 of the app, just to clean it up from previous mistakes.
 
 ## Current Pages
 
+All pages have a home button in the top left that takes users back to the Main Page (excludes Main Page)
+
 ### Main
 
 1. Add User
@@ -34,6 +36,9 @@ This is version 0.3 of the app, just to clean it up from previous mistakes.
 ### Connecting to Wheel
 1. Message: Connecting to Wheel
 ** Doesn't do anything yet
+
+### Start Driving
+1. Message: Don't Text and Drive!
 
 ### About HUD
 1. Paragraph doesn't want to work yet.
