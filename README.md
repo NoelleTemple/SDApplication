@@ -1,6 +1,6 @@
 # README
 
-This is version 3 of the app, just to clean it up from previous mistakes.
+This is version 0.3 of the app, just to clean it up from previous mistakes.
 
 ## Current Pages
 
