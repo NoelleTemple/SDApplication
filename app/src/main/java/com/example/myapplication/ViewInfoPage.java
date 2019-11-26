@@ -2,7 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class ViewInfoPage extends AppCompatActivity {
@@ -30,5 +33,17 @@ public class ViewInfoPage extends AppCompatActivity {
         TextView Sex = findViewById(R.id.sex);
         Sex.setText(sex);
 
+        ImageButton home_button2 = (ImageButton) findViewById(R.id.home_button2);
+        home_button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goHome();
+            }
+        });
+
+    }
+    private void goHome() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
