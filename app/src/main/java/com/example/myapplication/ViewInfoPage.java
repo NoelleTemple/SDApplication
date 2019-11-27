@@ -9,14 +9,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class ViewInfoPage extends AppCompatActivity {
+    ProfileInfo profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
+
         setContentView(R.layout.activity_view_info_page);
-        String name = new ProfileInfo().getName();
-        int a = new ProfileInfo().getAge();
-        boolean s = new ProfileInfo().getSex();
+        String name = profile.getName();
+        int a = profile.getAge();
+        boolean s = profile.getSex();
         String sex = "";
         if (s == true){
             sex = "Female";
@@ -40,7 +44,6 @@ public class ViewInfoPage extends AppCompatActivity {
                 goHome();
             }
         });
-
     }
     private void goHome() {
         Intent intent = new Intent(this, MainActivity.class);

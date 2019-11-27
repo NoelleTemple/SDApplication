@@ -8,9 +8,11 @@ import android.content.Intent;
 import com.example.myapplication.ProfileInfo;
 
 public class MainActivity extends AppCompatActivity {
+    ProfileInfo profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        profile = new ProfileInfo();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button add_user_button = findViewById(R.id.add_user_button);

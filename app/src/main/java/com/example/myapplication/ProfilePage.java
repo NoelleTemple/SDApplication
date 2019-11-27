@@ -15,6 +15,7 @@ public class ProfilePage extends AppCompatActivity {
     String name;
     int age;
     boolean sex;
+    ProfileInfo profile = new ProfileInfo();
 
     EditText User_Name;
     EditText User_Age;
@@ -37,7 +38,7 @@ public class ProfilePage extends AppCompatActivity {
                 name = User_Name.getText().toString();
                 age = Integer.valueOf(User_Age.getText().toString());
                 sex = sex_switch.isChecked();
-                new ProfileInfo().setProfileInfo(name, sex, age);
+                profile.setProfileInfo(name, sex, age);
                 goToViewInfo();
             }
         });
@@ -51,6 +52,7 @@ public class ProfilePage extends AppCompatActivity {
     }
     private void goToViewInfo() {
         Intent intent = new Intent(this, ViewInfoPage.class);
+        intent.putExtra("profile_info", profile);
         startActivity(intent);
     }
     private void goHome() {
