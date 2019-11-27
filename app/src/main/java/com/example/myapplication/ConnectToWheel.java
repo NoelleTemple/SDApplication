@@ -17,10 +17,6 @@ public class ConnectToWheel extends AppCompatActivity {
         Intent intent = getIntent();
         profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
 
-        String name = profile.getName();
-        int a = profile.getAge();
-        boolean s = profile.getSex();
-
         //control switch if bluetooth connection successful
         int i = 1;
         if (i == 1){

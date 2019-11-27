@@ -12,9 +12,7 @@ public class ProfileInfo implements Serializable {
         this.name = String.valueOf(name);
         this.sex = sex;
         this.age = age;
-        float[] ranges = new float[14][2];
-        ranges [0][0] =
-        ranges [0][1] = 65.5; //75+ 
+        double[][] ranges = {{
 
         if (age > 74){
 
