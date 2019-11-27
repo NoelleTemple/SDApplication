@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#3200967F"
+        android:contentDescription="@string/home_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
@@ -23,6 +24,19 @@
         android:text="@string/connecting_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.425" />
+
+    <Button
+        android:id="@+id/drive_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="#2C009688"
+        android:text="@string/start_driving"
+        app:layout_constraintEnd_toEndOf="@+id/connecting_title"
+        app:layout_constraintStart_toStartOf="@+id/connecting_title"
+        app:layout_constraintTop_toBottomOf="@+id/connecting_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

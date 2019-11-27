@@ -8,11 +8,19 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class DrivingPage extends AppCompatActivity {
-
+ProfileInfo profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_page);
+        Intent intent = getIntent();
+        profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
+
+        String name = profile.getName();
+        int a = profile.getAge();
+        boolean s = profile.getSex();
+        
+
         ImageButton home_button5 = (ImageButton) findViewById(R.id.home_button5);
         home_button5.setOnClickListener(new View.OnClickListener() {
             @Override

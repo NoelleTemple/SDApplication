@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -37,16 +38,29 @@ public class ViewInfoPage extends AppCompatActivity {
         TextView Sex = findViewById(R.id.sex);
         Sex.setText(sex);
 
-        ImageButton home_button2 = (ImageButton) findViewById(R.id.home_button2);
+        ImageButton home_button2 = findViewById(R.id.home_button2);
         home_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goHome();
             }
         });
+        Button confirm_button = findViewById(R.id.confirm_button);
+        confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goConnect();
+            }
+        });
     }
     private void goHome() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    private void goConnect() {
+        Intent intent = new Intent(this, ConnectToWheel.class);
+        startActivity(intent);
+        intent.putExtra("profile_info", profile);
         startActivity(intent);
     }
 }

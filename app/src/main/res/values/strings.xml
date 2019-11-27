@@ -14,5 +14,8 @@
     <string name="connecting_text">Connecting To Wheel!</string>
     <string name="drive_safe">HUD wants you to drive safely:</string>
     <string name="text_drive">Don\'t Text and Drive!</string>
+    <string name="confirm_info_title">Confirm Information</string>
+    <string name="confirm_button">My Information is Correct</string>
+    <string name="home_button">Go Home</string>
     <!--string name="About_P">Heads Up Driving, or HUD, is dedicated to making the roads a safer place.  Through sensors embedded in the steering wheel cover, we can track heart rate variability and through rigorous calculations, we can detect if you are falling asleep at the wheel.  Just input your user information so we can make the best possible decisions about your alertness!  If an alarm starts to go off, that\'s your cue to pull over, grab a coffee, or take a quick nap!</string-->
 </resources>
