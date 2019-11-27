@@ -46,3 +46,22 @@ All pages have a home button in the top left that takes users back to the Main P
 
 ### About HUD
 1. Paragraph doesn't want to work yet.
+
+
+### Profile Class
+Ranges:
+		M	F
+0	18-25 Max	78	75
+1	18-25 Min	58	55
+2	25-35 Max	75	72
+3	25-35 Min	55	50
+4	35-45 Max	70	69
+5	35-45 Min	50	48
+6	45-55 Max	66.5	68
+7	45-55 Min	46.5	47
+8	55-65 Max	64	64
+9	55-65 Min	42	43
+10	65-75 Max	65	60.5
+11	65-75 Min	40	39
+12	75+ Max	69	65.5
+13	75+ Min	38.5	33
