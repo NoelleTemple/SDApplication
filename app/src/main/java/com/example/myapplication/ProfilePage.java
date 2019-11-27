@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
-import com.example.myapplication.ProfileInfo;
 
 public class ProfilePage extends AppCompatActivity {
     String name;
@@ -26,10 +25,10 @@ public class ProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        User_Name = (EditText) findViewById(R.id.User_Name);
-        User_Age = (EditText) findViewById(R.id.User_Age);
-        sex_switch = (Switch) findViewById(R.id.sex_switch);
-        Button save_user_button = (Button) findViewById(R.id.save_user_button);
+        User_Name = findViewById(R.id.User_Name);
+        User_Age = findViewById(R.id.User_Age);
+        sex_switch = findViewById(R.id.sex_switch);
+        Button save_user_button = findViewById(R.id.save_user_button);
         save_user_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +39,7 @@ public class ProfilePage extends AppCompatActivity {
                 goToViewInfo();
             }
         });
-        ImageButton home_button = (ImageButton) findViewById(R.id.home_button);
+        ImageButton home_button = findViewById(R.id.home_button);
         home_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
