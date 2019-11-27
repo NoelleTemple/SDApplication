@@ -21,8 +21,6 @@ public class ProfilePage extends AppCompatActivity {
     EditText User_Age;
     Switch sex_switch;
 
-    Button save_user_button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
