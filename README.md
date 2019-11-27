@@ -10,11 +10,14 @@ All pages have a home button in the top left that takes users back to the Main P
 
 1. Add User
 ** Takes User to User Profile Page
-2. Connect to Wheel
+2. Connect to Wheel XX
+
 ** Takes User to Connecting to Wheel Page
-3. Start Driving
+3. Start Driving XX
+
 ** Does nothing right now
-4. About HUD
+4. About HUD XX
+
 ** Takes User to About HUD page
 
 ### User Profile
@@ -25,18 +28,18 @@ All pages have a home button in the top left that takes users back to the Main P
 3. Sex 
 ** User input (switch)
 4. Save User
-** Saves Information and Takes User to View User Profile Page
+** Passes user information to confirmation page
 
 ### View User Profile
 1. Name
 2. Age
 3. Sex
-4. Save User
-** Brings user to another page where it displays information
+4. Confirm User Info
+** Brings user to Connecting to Wheel Page
 
 ### Connecting to Wheel
 1. Message: Connecting to Wheel
-** Doesn't do anything yet
+** To Drive Page (need to add actual connection)
 
 ### Start Driving
 1. Message: Don't Text and Drive!
