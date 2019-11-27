@@ -31,7 +31,8 @@ All pages have a home button in the top left that takes users back to the Main P
 1. Name
 2. Age
 3. Sex
-** Shows default right now
+4. Save User
+** Brings user to another page where it displays information
 
 ### Connecting to Wheel
 1. Message: Connecting to Wheel
