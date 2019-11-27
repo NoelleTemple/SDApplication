@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +18,9 @@ public class ViewInfoPage extends AppCompatActivity {
         profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
 
         setContentView(R.layout.activity_view_info_page);
-        String name = profile.getName();
-        int a = profile.getAge();
-        boolean s = profile.getSex();
+        String name = profile.name;
+        int a = profile.age;
+        boolean s = profile.sex;
         String sex = "";
         if (s == true){
             sex = "Female";
@@ -29,7 +28,11 @@ public class ViewInfoPage extends AppCompatActivity {
         if (s == false){
             sex = "Male";
         }
+        double mn = profile.min;
+        double mx = profile.max;
         String age = String.valueOf(a);
+        String mini = String.valueOf(mn);
+        String maxi = String.valueOf(mx);
 
         TextView Name = findViewById(R.id.name);
         Name.setText(name);
@@ -37,6 +40,10 @@ public class ViewInfoPage extends AppCompatActivity {
         Age.setText(age);
         TextView Sex = findViewById(R.id.sex);
         Sex.setText(sex);
+        TextView min = findViewById(R.id.min);
+        min.setText(mini);
+        TextView max = findViewById(R.id.max);
+        max.setText(maxi);
 
         ImageButton home_button2 = findViewById(R.id.home_button2);
         home_button2.setOnClickListener(new View.OnClickListener() {
