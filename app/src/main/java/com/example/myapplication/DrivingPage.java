@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,12 +15,7 @@ ProfileInfo profile;
         Intent intent = getIntent();
         profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
 
-        String name = profile.getName();
-        int a = profile.getAge();
-        boolean s = profile.getSex();
-        
-
-        ImageButton home_button5 = (ImageButton) findViewById(R.id.home_button5);
+        ImageButton home_button5 = findViewById(R.id.home_button5);
         home_button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
