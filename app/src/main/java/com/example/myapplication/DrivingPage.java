@@ -1,15 +1,12 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import java.io.IOException;
 
 public class DrivingPage extends AppCompatActivity {
     ProfileInfo profile;
@@ -46,7 +43,6 @@ public class DrivingPage extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void goHome() {

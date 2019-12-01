@@ -31,12 +31,12 @@
 
     <TextView
         android:id="@+id/about_paragraph"
-        android:layout_width="383dp"
-        android:layout_height="152dp"
-        android:text="Doesn't like: @string/About_P"
+        android:layout_width="348dp"
+        android:layout_height="209dp"
+        android:text=" "
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/about_title"
+        app:layout_constraintStart_toStartOf="@+id/about_title"
         app:layout_constraintTop_toBottomOf="@+id/about_title"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.251" />
 </androidx.constraintlayout.widget.ConstraintLayout>
