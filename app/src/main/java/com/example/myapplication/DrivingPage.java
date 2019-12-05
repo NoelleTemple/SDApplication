@@ -52,23 +52,19 @@ public class DrivingPage extends AppCompatActivity {
     }
 //will data be in ints or doubles?
     //return bool or nothing and just set text/alarm from here?
-    private boolean algorithmMM(int RRintervals[], double warn_min, double warn_max) {
+    private boolean algorithmMM(double RRintervals[], double warn_min, double warn_max) {
         if (RRintervals[0] < 1) {
             for(int i=0; i<RRintervals.length; i++) {
                 RRintervals[i] = RRintervals[i] * 1000;
             }
         }
         double temp = 0;
-        //FIGURE THIS OUT IN JAVA???
-        //for int i in range (1, RRintervals.length){
         for (int i = 1; i<RRintervals.length; i++ ){
             double diff = RRintervals[i] - RRintervals[i - 1];
-            //WHAT IS ** in python? Exponent?
             double diff2 = Math.pow(diff, 2);
             temp = temp + diff2;
         }
 //    print(temp)
-        //FIGURE OUT LENGTH STUFF IN JAVA
         double average_diff = temp / (RRintervals.length - 1);
         double RMSSD = Math.sqrt(average_diff);
 
@@ -76,7 +72,7 @@ public class DrivingPage extends AppCompatActivity {
         double logRMSSD = Math.log(RMSSD);
         double score = (logRMSSD / 6.5) * 100
         //    print(score, warn_min, warn_max)
-        boolean decision = false;
+        boolean decision;
         if ((warn_min < score) && (warn_max > score)) {
             //print("Pull over, you are drowsy!");
             decision = true;
@@ -84,7 +80,6 @@ public class DrivingPage extends AppCompatActivity {
             //print("Continue driving, you super star~");
             decision = false;
         }
-        
         return decision;
     }
 }
