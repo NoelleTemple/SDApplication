@@ -42,7 +42,7 @@ public class DrivingPage extends AppCompatActivity {
                 }
             }
         });
-        int data[]= {985, 875, 655, 792, 823};
+        double data[]= {985, 875, 655, 792, 823};
         algorithmMM(data, profile.min, profile.max);
     }
 
@@ -70,7 +70,7 @@ public class DrivingPage extends AppCompatActivity {
 
         //natural or base 10?
         double logRMSSD = Math.log(RMSSD);
-        double score = (logRMSSD / 6.5) * 100
+        double score = (logRMSSD / 6.5) * 100;
         //    print(score, warn_min, warn_max)
         boolean decision;
         if ((warn_min < score) && (warn_max > score)) {
