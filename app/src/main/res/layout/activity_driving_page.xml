@@ -50,4 +50,13 @@
         app:layout_constraintEnd_toEndOf="@+id/text_drive"
         app:layout_constraintStart_toStartOf="@+id/text_drive"
         app:layout_constraintTop_toBottomOf="@+id/text_drive" />
+
+    <TextView
+        android:id="@+id/decision_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/alarm_button"
+        app:layout_constraintEnd_toEndOf="@+id/text_drive"
+        app:layout_constraintStart_toStartOf="@+id/text_drive"
+        app:layout_constraintTop_toBottomOf="@+id/text_drive" />
 </androidx.constraintlayout.widget.ConstraintLayout>

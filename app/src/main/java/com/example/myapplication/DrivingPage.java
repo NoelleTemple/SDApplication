@@ -27,9 +27,7 @@ public class DrivingPage extends AppCompatActivity {
         });
 
         final boolean[] i = {false};
-
         final MediaPlayer alarm = MediaPlayer.create(DrivingPage.this, R.raw.alarm);
-
         Button alarm_button = findViewById(R.id.alarm_button);
         alarm_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +42,16 @@ public class DrivingPage extends AppCompatActivity {
                 }
             }
         });
+        int data[]= {985, 875, 655, 792, 823};
+        algorithmMM(data, profile.min, profile.max);
     }
 
     private void goHome() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
+//will data be in ints or doubles?
+    //return bool or nothing and just set text/alarm from here?
     private boolean algorithmMM(int RRintervals[], double warn_min, double warn_max) {
         if (RRintervals[0] < 1) {
             for(int i=0; i<RRintervals.length; i++) {
@@ -83,6 +84,7 @@ public class DrivingPage extends AppCompatActivity {
             //print("Continue driving, you super star~");
             decision = false;
         }
+        
         return decision;
     }
 }
