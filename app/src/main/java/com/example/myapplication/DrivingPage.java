@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import java.lang.Math;
 
 public class DrivingPage extends AppCompatActivity {
     ProfileInfo profile;
@@ -49,4 +50,41 @@ public class DrivingPage extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    private boolean algorithmMM(int RRintervals[], double warn_min, double warn_max) {
+        if (RRintervals[0] < 1) {
+            for(int i=0; i<RRintervals.length; i++) {
+                RRintervals[i] = RRintervals[i] * 1000;
+            }
+        }
+        double temp = 0;
+        //FIGURE THIS OUT IN JAVA???
+        //for int i in range (1, RRintervals.length){
+        for (int i = 1; i<RRintervals.length; i++ ){
+            double diff = RRintervals[i] - RRintervals[i - 1];
+            //WHAT IS ** in python? Exponent?
+            double diff2 = Math.pow(diff, 2);
+            temp = temp + diff2;
+        }
+//    print(temp)
+        //FIGURE OUT LENGTH STUFF IN JAVA
+        double average_diff = temp / (RRintervals.length - 1);
+        double RMSSD = Math.sqrt(average_diff);
+
+        //natural or base 10?
+        double logRMSSD = Math.log(RMSSD);
+        double score = (logRMSSD / 6.5) * 100
+        //    print(score, warn_min, warn_max)
+        boolean decision = false;
+        if ((warn_min < score) && (warn_max > score)) {
+            //print("Pull over, you are drowsy!");
+            decision = true;
+        } else {
+            //print("Continue driving, you super star~");
+            decision = false;
+        }
+        return decision;
+    }
 }
+
+
