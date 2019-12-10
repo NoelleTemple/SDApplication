@@ -29,7 +29,7 @@ public class ConnectToWheel extends AppCompatActivity {
             });
         }
 
-        ImageButton home_button3 = (ImageButton) findViewById(R.id.home_button3);
+        ImageButton home_button3 = findViewById(R.id.home_button3);
         home_button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
