@@ -8,12 +8,17 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
     ProfileInfo profile;
+    public static final String UUID = "f5f36c6e-0963-4e1a-80c7-b15b0f42a9e0";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         profile = new ProfileInfo();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         Button add_user_button = findViewById(R.id.add_user_button);
         add_user_button.setOnClickListener(new View.OnClickListener() {
             @Override

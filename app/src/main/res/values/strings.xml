@@ -18,4 +18,6 @@
     <string name="confirm_button">My Information is Correct</string>
     <string name="home_button">Go Home</string>
     <string name="alarm_button">Test Alarm</string>
+    <string name="connect">Connect to Wheel</string>
+    <string name="select_instructions">Select the device named ESP 32, and then select Start Connecting</string>
 </resources>
