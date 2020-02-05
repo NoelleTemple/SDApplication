@@ -111,6 +111,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
     private BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "TRYING.");
             final String action = intent.getAction();
             Log.d(TAG, "onReceive: ACTION FOUND.");
 
@@ -171,8 +172,8 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         Intent intent = getIntent();
         profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
 
-        setContentView(R.layout.activity_main);
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.connectingbtn);
+
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
@@ -185,14 +186,13 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         registerReceiver(mBroadcastReceiver4, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        lvNewDevices.setOnItemClickListener((AdapterView.OnItemClickListener) ConnectToWheel.this);
+        lvNewDevices.setOnItemClickListener(ConnectToWheel.this);
 
         btnEnableDisable_Discoverable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: enabling/disabling bluetooth.");
                 EnableDisable_Discoverable();
-
             }
         });
 
@@ -210,6 +210,14 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
                 mBluetoothConnection.write(bytes);
             }
         });
+        Button discover = findViewById(R.id.discoverbtn);
+        discover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "discoverbtn: Trying to discover other devices.");
+                Discover();
+            }
+        });
 
         /*********************/
         /*control switch if bluetooth connection successful
@@ -223,6 +231,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
                 }
             });
         }*/
+
 
         ImageButton home_button3 = findViewById(R.id.home_button3);
         home_button3.setOnClickListener(new View.OnClickListener() {
@@ -265,7 +274,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
 
         IntentFilter intentFilter = new IntentFilter(mBluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
         registerReceiver(mBroadcastReceiver2,intentFilter);
-        Discover();
+
     }
 
 
@@ -280,8 +289,11 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             checkBTPermissions();
 
             mBluetoothAdapter.startDiscovery();
+            Log.d(TAG, "btnDiscover: discovery started.");
+
             IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
+            Log.d(TAG, "btnDiscover: should have registered.");
         }
         if(!mBluetoothAdapter.isDiscovering()){
 
@@ -289,8 +301,8 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             checkBTPermissions();
 
             mBluetoothAdapter.startDiscovery();
-            IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
+            //IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            registerReceiver(mBroadcastReceiver3, new IntentFilter(BluetoothDevice.ACTION_FOUND));//discoverDevicesIntent);
         }
     }
 
