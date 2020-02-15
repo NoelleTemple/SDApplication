@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 goToProfiles();
             }
         });
-        Button connect_button = findViewById(R.id.connect_button);
+        /*Button connect_button = findViewById(R.id.connect_button);
         connect_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToConnect();
             }
-        });
+        });*/
         Button about_button = findViewById(R.id.about_button);
         about_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
                 goToAbout();
             }
         });
-        Button start_driving_button = findViewById(R.id.start_driving_button);
+        /*Button start_driving_button = findViewById(R.id.start_driving_button);
         start_driving_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDriving();
             }
-        });
+        });*/
     }
     private void goToProfiles() {
         Intent intent = new Intent(this, ProfilePage.class);
