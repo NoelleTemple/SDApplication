@@ -35,6 +35,7 @@ public class BluetoothConnectionService {
     ProgressDialog mProgressDialog;
 
     private ConnectedThread mConnectedThread;
+    String incomingMessage;
 
     public BluetoothConnectionService(Context context) {
         mContext = context;
@@ -216,6 +217,7 @@ public class BluetoothConnectionService {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
 
+
         public ConnectedThread(BluetoothSocket socket) {
             Log.d(TAG, "ConnectedThread: Starting.");
 
@@ -252,7 +254,7 @@ public class BluetoothConnectionService {
                 // Read from the InputStream
                 try {
                     bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
+                    incomingMessage = new String(buffer, 0, bytes);
                     /************/
                     Log.d(TAG, "InputStream: " + incomingMessage);
 

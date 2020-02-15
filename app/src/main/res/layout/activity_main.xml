@@ -11,9 +11,10 @@
         android:id="@+id/Welcome_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="216dp"
         android:text="@string/welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,47 +23,24 @@
         android:id="@+id/add_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:background="#2C009688"
-        android:text="@string/add_user"
+        android:text="@string/start"
+        app:layout_constraintBottom_toTopOf="@+id/about_button"
         app:layout_constraintEnd_toEndOf="@+id/Welcome_message"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/Welcome_message"
         app:layout_constraintTop_toBottomOf="@+id/Welcome_message" />
 
     <Button
-        android:id="@+id/connect_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#2C009688"
-        android:text="@string/connect_to_wheel"
-        app:layout_constraintEnd_toEndOf="@+id/add_user_button"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/add_user_button"
-        app:layout_constraintTop_toBottomOf="@+id/add_user_button" />
-
-    <Button
-        android:id="@+id/start_driving_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#2D009688"
-        android:text="@string/start_driving"
-        app:layout_constraintEnd_toEndOf="@+id/connect_button"
-        app:layout_constraintStart_toStartOf="@+id/connect_button"
-        app:layout_constraintTop_toBottomOf="@+id/connect_button" />
-
-    <Button
         android:id="@+id/about_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="256dp"
         android:background="#2A009688"
         android:text="@string/AboutHUD"
-        app:layout_constraintEnd_toEndOf="@+id/start_driving_button"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="@+id/start_driving_button"
-        app:layout_constraintTop_toBottomOf="@+id/start_driving_button" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_user_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_user_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

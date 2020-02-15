@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,9 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -32,6 +35,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
     Button btnStartConnection;
     Button btnSend;
     EditText etSend;
+    Algorithm decide = new Algorithm();
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("f5f36c6e-0963-4e1a-80c7-b15b0f42a9e0");
 
@@ -171,6 +175,8 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_connect_to_wheel);
         Intent intent = getIntent();
         profile = (ProfileInfo) intent.getSerializableExtra("profile_info");
+        double mn = profile.min;
+        double mx = profile.max;
 
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.connectingbtn);
 
@@ -238,6 +244,23 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 goHome();
+            }
+        });
+
+        final boolean[] i = {false};
+        final MediaPlayer alarm_test = MediaPlayer.create(ConnectToWheel.this, R.raw.alarm);
+        Button alarm_button = findViewById(R.id.alarm_button);
+        alarm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i[0] = !i[0];
+                if (i[0]) {
+                    alarm_test.start();
+                    alarm_test.setLooping(true);
+                } else {
+                    alarm_test.pause();
+                    //alarm_test.stop(); //to completely stop
+                }
             }
         });
     }
@@ -346,6 +369,27 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
 
             mBTDevice = mBTDevices.get(i);
             mBluetoothConnection = new BluetoothConnectionService(ConnectToWheel.this);
+            String stream = mBluetoothConnection.incomingMessage;
+            final TextView Stream = (TextView) findViewById(R.id.Input_Stream);
+            Stream.setText(stream);
+            String[] RRinterval_Str = stream.split(",");
+            double[] RRintervals = new double[RRinterval_Str.length];
+            for(int b=0; b<RRinterval_Str.length; b++)
+            {
+                RRintervals [b] = Double.parseDouble(RRinterval_Str[b]);
+            }
+            /*****/
+            double mn = profile.min;
+            double mx = profile.max;
+            final MediaPlayer alarm = MediaPlayer.create(ConnectToWheel.this, R.raw.alarm);
+            boolean decision = decide.algorithmMM(RRintervals, mn, mx);
+            if (decision) {
+                alarm.start();
+                alarm.setLooping(true);
+            } else {
+                alarm.pause();
+                //alarm.stop(); //to completely stop
+            }
         }
     }
 }
