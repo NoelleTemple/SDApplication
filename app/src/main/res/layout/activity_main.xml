@@ -7,6 +7,18 @@
     android:background="#3200967F"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/tst_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="272dp"
+        android:background="#2A009688"
+        android:text="@string/testing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_user_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_user_button" />
+
     <TextView
         android:id="@+id/Welcome_message"
         android:layout_width="wrap_content"
@@ -23,9 +35,9 @@
         android:id="@+id/add_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:background="#2C009688"
         android:text="@string/start"
-        app:layout_constraintBottom_toTopOf="@+id/about_button"
         app:layout_constraintEnd_toEndOf="@+id/Welcome_message"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/Welcome_message"
@@ -35,12 +47,12 @@
         android:id="@+id/about_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="256dp"
         android:background="#2A009688"
         android:text="@string/AboutHUD"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tst_button"
         app:layout_constraintEnd_toEndOf="@+id/add_user_button"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/add_user_button" />
+        app:layout_constraintStart_toStartOf="@+id/add_user_button"
+        app:layout_constraintTop_toBottomOf="@+id/add_user_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

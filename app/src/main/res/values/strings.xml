@@ -23,4 +23,6 @@
     <string name="start">Start</string>
     <string name="self_discover">Make Device Available</string>
     <string name="find_devices">Search for Device</string>
+    <string name="testing">Test Data</string>
+    <string name="strt_test_1">Start Test Set 1</string>
 </resources>

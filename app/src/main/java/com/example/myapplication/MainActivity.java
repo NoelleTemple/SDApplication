@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         Button add_user_button = findViewById(R.id.add_user_button);
         add_user_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 goToDriving();
             }
         });*/
+        Button test_btn = findViewById(R.id.tst_button);
+        test_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToTesting();
+            }
+        });
     }
     private void goToProfiles() {
         Intent intent = new Intent(this, ProfilePage.class);
@@ -60,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutPage.class);
         startActivity(intent);
     }
-    private void goToDriving() {
+    /*private void goToDriving() {
         Intent intent = new Intent(this, DrivingPage.class);
+        startActivity(intent);
+    }*/
+    private void goToTesting() {
+        Intent intent = new Intent(this, Test_Data.class);
         startActivity(intent);
     }
 }

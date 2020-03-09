@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -53,7 +54,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             // When discovery finds a device
             if (action.equals(mBluetoothAdapter.ACTION_STATE_CHANGED)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, mBluetoothAdapter.ERROR);
-                switch(state){
+                switch (state) {
                     case BluetoothAdapter.STATE_OFF:
                         Log.d(TAG, "onReceive: STATE OFF");
                         break;
@@ -121,8 +122,8 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             final String action = intent.getAction();
             Log.d(TAG, "onReceive: ACTION FOUND.");
 
-            if (action.equals(BluetoothDevice.ACTION_FOUND)){
-                BluetoothDevice device = intent.getParcelableExtra (BluetoothDevice.EXTRA_DEVICE);
+            if (action.equals(BluetoothDevice.ACTION_FOUND)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 mBTDevices.add(device);
                 Log.d(TAG, "onReceive: " + device.getName() + ": " + device.getAddress());
                 mDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, mBTDevices);
@@ -139,11 +140,11 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
 
-            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+            if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
                 BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 //3 cases:
                 //case1: bonded already
-                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     //inside BroadcastReceiver4
                     mBTDevice = mDevice;
@@ -262,6 +263,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+
     private void goHome() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -273,17 +275,45 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         startActivity(intent);
     }*/
 
-    public void startConnection(){
-        startBTConnection(mBTDevice,MY_UUID_INSECURE);
+    public void startConnection() {
+        startBTConnection(mBTDevice, MY_UUID_INSECURE);
     }
 
     /**
      * starting chat service method
      */
-    public void startBTConnection(BluetoothDevice device, UUID uuid){
+    public void startBTConnection(BluetoothDevice device, UUID uuid) {
+        String[] RRinterval_Str = new String[10];
+        for (int d = 0; d < 10; d++) {
+            RRinterval_Str[d] = "00";
+        }
         Log.d(TAG, "startBTConnection: Initializing RFCOM Bluetooth Connection.");
 
-        mBluetoothConnection.startClient(device,uuid);
+        mBluetoothConnection.startClient(device, uuid);
+
+        /*if (RRinterval_Str != null) {
+            RRinterval_Str = stream.split(" ");
+        }
+        double[] RRintervals = new double[RRinterval_Str.length];
+        for(int b=0; b<RRinterval_Str.length; b++)
+        {
+            RRintervals [b] = Double.parseDouble(RRinterval_Str[b]);
+        }*/
+        /*****/
+        double mn = profile.min;
+        double mx = profile.max;
+        final MediaPlayer alarm = MediaPlayer.create(ConnectToWheel.this, R.raw.alarm);
+        /*boolean decision = decide.algorithmMM(RRintervals, mn, mx);
+        if (decision) {
+            alarm.start();
+            alarm.setLooping(true);
+        } else {
+            alarm.pause();
+            //alarm.stop(); //to completely stop
+        }*/
+        Thread check = new Thread(new checkForMessage());
+        check.start();
+
     }
 
     public void EnableDisable_Discoverable() {
@@ -294,15 +324,14 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         startActivity(discoverableIntent);
 
         IntentFilter intentFilter = new IntentFilter(mBluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-        registerReceiver(mBroadcastReceiver2,intentFilter);
+        registerReceiver(mBroadcastReceiver2, intentFilter);
 
     }
-
 
     public void Discover() {
         Log.d(TAG, "btnDiscover: Looking for unpaired devices.");
 
-        if(mBluetoothAdapter.isDiscovering()){
+        if (mBluetoothAdapter.isDiscovering()) {
             mBluetoothAdapter.cancelDiscovery();
             Log.d(TAG, "btnDiscover: Canceling discovery.");
 
@@ -316,7 +345,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
             Log.d(TAG, "btnDiscover: should have registered.");
         }
-        if(!mBluetoothAdapter.isDiscovering()){
+        if (!mBluetoothAdapter.isDiscovering()) {
 
             //check BT permissions in manifest
             checkBTPermissions();
@@ -361,32 +390,31 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
 
         //create the bond.
         //NOTE: Requires API 17+? I think this is JellyBean
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
             Log.d(TAG, "Trying to pair with " + deviceName);
             mBTDevices.get(i).createBond();
 
             mBTDevice = mBTDevices.get(i);
             mBluetoothConnection = new BluetoothConnectionService(ConnectToWheel.this);
-            String stream = mBluetoothConnection.incomingMessage;
-            final TextView Stream = (TextView) findViewById(R.id.Input_Stream);
-            Stream.setText(stream);
-            String[] RRinterval_Str = stream.split(",");
-            double[] RRintervals = new double[RRinterval_Str.length];
-            for(int b=0; b<RRinterval_Str.length; b++)
-            {
-                RRintervals [b] = Double.parseDouble(RRinterval_Str[b]);
-            }
-            /*****/
-            double mn = profile.min;
-            double mx = profile.max;
-            final MediaPlayer alarm = MediaPlayer.create(ConnectToWheel.this, R.raw.alarm);
-            boolean decision = decide.algorithmMM(RRintervals, mn, mx);
-            if (decision) {
-                alarm.start();
-                alarm.setLooping(true);
-            } else {
-                alarm.pause();
-                //alarm.stop(); //to completely stop
+        }
+    }
+
+    public class checkForMessage implements Runnable {
+        public void run() {
+            boolean checkMessage;
+            Log.d(TAG, "We are in the thread");
+            while (true) {
+                String message;
+                //TextView Stream = (TextView) findViewById(R.id.Input_Stream);
+                //Stream.setText("hello");
+                checkMessage = mBluetoothConnection.newMessage;
+                if (checkMessage == true) {
+                    Log.d(TAG, "Check message is true");
+                    message = mBluetoothConnection.Message;
+                    Log.d(TAG, "message from thread: " + message);
+                    //Stream.setText(message);
+                } else {
+                }
             }
         }
     }

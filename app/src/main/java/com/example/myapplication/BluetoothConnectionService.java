@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import java.io.IOException;
@@ -13,11 +14,9 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
-/**
- * Created by User on 12/21/2016.
- */
-
 public class BluetoothConnectionService {
+    public String Message;
+    public boolean newMessage = false;
     private static final String TAG = "BluetoothConnectionServ";
     private static final String appName = "MYAPP";
 
@@ -34,8 +33,8 @@ public class BluetoothConnectionService {
     private UUID deviceUUID;
     ProgressDialog mProgressDialog;
 
-    private ConnectedThread mConnectedThread;
-    String incomingMessage;
+    public ConnectedThread mConnectedThread;
+    //String incomingMessage;
 
     public BluetoothConnectionService(Context context) {
         mContext = context;
@@ -111,8 +110,8 @@ public class BluetoothConnectionService {
      * with a device. It runs straight through; the connection either
      * succeeds or fails.
      */
-    private class ConnectThread extends Thread {
-        private BluetoothSocket mmSocket;
+    public class ConnectThread extends Thread {
+        public BluetoothSocket mmSocket;
 
         public ConnectThread(BluetoothDevice device, UUID uuid) {
             Log.d(TAG, "ConnectThread: started.");
@@ -161,6 +160,7 @@ public class BluetoothConnectionService {
             //will talk about this in the 3rd video
             connected(mmSocket,mmDevice);
         }
+
         public void cancel() {
             try {
                 Log.d(TAG, "cancel: Closing Client Socket.");
@@ -206,16 +206,23 @@ public class BluetoothConnectionService {
 
         mConnectThread = new ConnectThread(device, uuid);
         mConnectThread.start();
+        /*try {
+            mConnectedThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
     }
 
     /**
      Finally the ConnectedThread which is responsible for maintaining the BTConnection, Sending the data, and
      receiving incoming data through input/output streams respectively.
      **/
-    private class ConnectedThread extends Thread {
+    public class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
+        public String Message;
+        public String incomingMessage;
 
 
         public ConnectedThread(BluetoothSocket socket) {
@@ -245,18 +252,42 @@ public class BluetoothConnectionService {
         }
 
         public void run(){
+            //String incomingMessage;
+            //String previousMessage;
             byte[] buffer = new byte[1024];  // buffer store for the stream
 
             int bytes; // bytes returned from read()
 
             // Keep listening to the InputStream until an exception occurs
             while (true) {
+                newMessage = false;
+                //boolean newMessage = false;
                 // Read from the InputStream
                 try {
                     bytes = mmInStream.read(buffer);
+                    //previousMessage = incomingMessage;
                     incomingMessage = new String(buffer, 0, bytes);
+                    Message = incomingMessage;
+                    newMessage = true;
+                    /*if (incomingMessage != previousMessage){
+                        this.Message = incomingMessage;
+                    }*/
                     /************/
-                    Log.d(TAG, "InputStream: " + incomingMessage);
+                    /*final MediaPlayer alarm = MediaPlayer.create(BluetoothConnectionService.this, R.raw.alarm);
+                    //boolean decision = decide.algorithmMM(RRintervals, mn, mx);
+                    //if (decision) {
+                    int i = 1;
+                    if (i == 1){
+                        alarm.start();
+                        alarm.setLooping(true);
+                    } else {
+                        alarm.pause();
+                        //alarm.stop(); //to completely stop
+                    }*/
+                    Log.d(TAG, "InputStream (incomingMessage): " + incomingMessage);
+                    Log.d(TAG, "InputStream (Message): " + Message);
+
+                    //newMessage = true;
 
                     break;
                 } catch (IOException e) {
@@ -265,6 +296,10 @@ public class BluetoothConnectionService {
                 }
             }
         }
+        /*public String returnMessage(){
+            test = "test";
+            return test;
+        }*/
 
         //Call this from the main activity to send data to the remote device
         public void write(byte[] bytes) {
@@ -283,9 +318,14 @@ public class BluetoothConnectionService {
                 mmSocket.close();
             } catch (IOException e) { }
         }
+
+        /*trying to return value of 'incomingMessage'
+        public String returnMessage(){
+            return incomingMessage;
+        }*/
     }
 
-    private void connected(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
+    public void connected(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
         Log.d(TAG, "connected: Starting.");
 
         // Start the thread to manage the connection and perform transmissions
@@ -308,5 +348,4 @@ public class BluetoothConnectionService {
         //perform the write
         mConnectedThread.write(out);
     }
-
 }
