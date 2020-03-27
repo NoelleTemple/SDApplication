@@ -37,7 +37,6 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
     Button btnSend;
     EditText etSend;
     Algorithm decide = new Algorithm();
-    Button alarm_btn;
 
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("f5f36c6e-0963-4e1a-80c7-b15b0f42a9e0");
@@ -184,7 +183,7 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         mBTDevices = new ArrayList<>();
         btnStartConnection = (Button) findViewById(R.id.start_connection_btn);
         btnSend = (Button) findViewById(R.id.btnSend);
-        alarm_btn = findViewById(R.id.alarm_button2);
+
         etSend = (EditText) findViewById(R.id.editText);
 
         //Broadcasts when bond state changes (ie:pairing)
@@ -199,22 +198,6 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
             public void onClick(View view) {
                 Log.d(TAG, "onClick: enabling/disabling bluetooth.");
                 EnableDisable_Discoverable();
-            }
-        });
-
-        final boolean[] i = {false};
-        final MediaPlayer alarm_test = MediaPlayer.create(ConnectToWheel.this, R.raw.alarm);
-        alarm_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                i[0] = !i[0];
-                if (i[0]) {
-                    alarm_test.start();
-                    alarm_test.setLooping(true);
-                } else {
-                    alarm_test.pause();
-                    //alarm_test.stop(); //to completely stop
-                }
             }
         });
 

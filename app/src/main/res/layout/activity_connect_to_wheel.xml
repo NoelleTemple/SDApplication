@@ -8,17 +8,6 @@
     tools:context=".ConnectToWheel">
 
     <Button
-        android:id="@+id/alarm_button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#2C009688"
-        android:text="@string/alarm_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnSend"
-        app:layout_constraintStart_toStartOf="@+id/text_drive"
-        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
-
-    <Button
         android:id="@+id/discoverbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

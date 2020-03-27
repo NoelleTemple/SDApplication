@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,14 +11,14 @@ import android.content.Intent;
 public class MainActivity extends AppCompatActivity {
     ProfileInfo profile;
     public static final String UUID = "f5f36c6e-0963-4e1a-80c7-b15b0f42a9e0";
-
+    Button alarm_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         profile = new ProfileInfo();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        alarm_btn = findViewById(R.id.alarm_button);
 
         Button add_user_button = findViewById(R.id.add_user_button);
         add_user_button.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +34,22 @@ public class MainActivity extends AppCompatActivity {
                 goToConnect();
             }
         });*/
+        final boolean[] i = {false};
+        final MediaPlayer alarm_test = MediaPlayer.create(MainActivity.this, R.raw.alarm);
+        alarm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i[0] = !i[0];
+                if (i[0]) {
+                    alarm_test.start();
+                    alarm_test.setLooping(true);
+                } else {
+                    alarm_test.pause();
+                    //alarm_test.stop(); //to completely stop
+                }
+            }
+        });
+
         Button about_button = findViewById(R.id.about_button);
         about_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,4 +92,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Test_Data.class);
         startActivity(intent);
     }
+
 }

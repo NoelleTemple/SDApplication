@@ -25,4 +25,6 @@
     <string name="find_devices">Search for Device</string>
     <string name="testing">Test Data</string>
     <string name="strt_test_1">Start Test Set 1</string>
+    <string name="strt_test_2">Start Test Set 2</string>
+    <string name="strt_test_3">Start Test Set 3</string>
 </resources>
