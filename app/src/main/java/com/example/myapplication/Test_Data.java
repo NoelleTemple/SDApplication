@@ -54,7 +54,7 @@ public class Test_Data extends AppCompatActivity {
                     Log.wtf("TestData: Error reading datafile on line " + line, e);
                     e.printStackTrace();
                 }
-                RunAlg (list);
+                RunAlg (list, 1);
                 list.clear();
             }
         });
@@ -75,7 +75,7 @@ public class Test_Data extends AppCompatActivity {
                     Log.wtf("TestData: Error reading datafile on line " + line, e);
                     e.printStackTrace();
                 }
-                RunAlg (list);
+                RunAlg (list, 2);
                 list.clear();
                 /*
                 InputStream inputStream = getResources().openRawResource(R.raw.test2);
@@ -112,13 +112,13 @@ public class Test_Data extends AppCompatActivity {
                     Log.wtf("TestData: Error reading datafile on line " + line, e);
                     e.printStackTrace();
                 }
-                RunAlg (list);
+                RunAlg (list, 3);
                 list.clear();
             }
         });
     }
 
-    private void RunAlg (List<Integer> RRintervals){
+    private void RunAlg (List<Integer> RRintervals, int Test_Numb){
             long startTime = System.nanoTime();
 
             //*****This stuff changed to send windows over*****//
@@ -134,11 +134,11 @@ public class Test_Data extends AppCompatActivity {
                     }
                 }
                 dec_array[c-window_length] = String.valueOf(alg.algorithmMM(window));
-                Log.i("Out of Algorithm (3)", "Window #: " + (c-window_length));
+                Log.i("Out of Algorithm " + Test_Numb, "Window #: " + (c-window_length));
             }
             long endTime = System.nanoTime();
             //Log.i("Algorithm Done", "Runtime: " + (endTime-startTime));
-            Log.i("Algorithm Done (3)", "\nLength of List: " +list.size() +
+            Log.i("Algorithm Done " + Test_Numb, "\nLength of List: " +list.size() +
                     "\nWindow Length: " + window_length + "\nRuntime:" + (endTime - startTime));
 
             //It won't let me log the full dec_array, probably because it's so large (~1500)
