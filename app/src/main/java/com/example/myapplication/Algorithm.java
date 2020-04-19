@@ -7,47 +7,48 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 public class Algorithm {
-    boolean decision;
-
-    public boolean algorithmMM(List<Integer> RRintervals) {
+    String decision;
+    //window
+    public String algorithmMM(List<Integer> RRintervals, int pNNx, double LP, double threshold) {
         List<Integer> filteredRR = new ArrayList<Integer>();
         int NN50 = 0;
         double pNN50;
+
         for (int i = 0; i < RRintervals.size(); i++) {
             if (RRintervals.get(i) > 0) {
                 if (filteredRR.size() > 0) {
-                    if ((abs(RRintervals.get(i) - filteredRR.get(filteredRR.size() - 1)) / filteredRR.get(filteredRR.size() - 1)) <= 0.2) {
-                        //*****This Line Changed*****//
+                    if ((abs(RRintervals.get(i) - filteredRR.get(filteredRR.size() - 1)) / filteredRR.get(filteredRR.size() - 1)) <= LP) {
                         filteredRR.add(RRintervals.get(i));
-                        //filteredRR.add(RRintervals.get(i));
                     }
                 } else {
-                    //*****This Line Changed*****//
                     filteredRR.add(RRintervals.get(i));
-                    //filteredRR.add(RRintervals.get(i));
                 }
             }
         }
 
         for (int i = 1; i < filteredRR.size(); i++) {
-            if (abs(filteredRR.get(i) - filteredRR.get(i - 1)) >= 50) {
+            if (abs(filteredRR.get(i) - filteredRR.get(i - 1)) >= pNNx) {
                 NN50++;
             }
         }
         //think this should be divided by size - 1 because you have 49 'differences' from 50 values
-        pNN50 = (NN50/(filteredRR.size() - 1)) * 100;
-        boolean x;
-        if (pNN50 > 20.0){
-            this.decision = true;
-            x = true;
-        }
-        else {
-            x = false;
-            this.decision = false;
+        String x;
+        if (filteredRR.size() <= 1) {
+            x = "ND";
+            this.decision = "ND";
+        } else {
+            pNN50 = (NN50 / (filteredRR.size() - 1)) * 100;
+            if (pNN50 > threshold) {
+                this.decision = "Asleep";
+                x = "Asleep";
+            } else {
+                x = "Awake";
+                this.decision = "Awake";
+            }
         }
         filteredRR.clear();
         Log.i("Inside Algorithm: ", "Decision: " + x);
-        return decision;
+        return x;
     }
 }
 

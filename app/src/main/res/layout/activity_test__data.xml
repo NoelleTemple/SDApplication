@@ -8,50 +8,49 @@
     tools:context=".Test_Data">
 
     <Button
+        android:id="@+id/testall_btn"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="384dp"
+        android:background="#2C009688"
+        android:text="Test All"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/test2_btn"
         android:layout_width="145dp"
         android:layout_height="55dp"
         android:background="#2C009688"
         android:text="@string/strt_test_2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/test3_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test1_btn"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.548" />
 
     <Button
         android:id="@+id/test3_btn"
         android:layout_width="145dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:background="#2C009688"
         android:text="@string/strt_test_3"
-        app:layout_constraintBottom_toTopOf="@+id/view_data_lv"
+        app:layout_constraintBottom_toTopOf="@+id/testall_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test2_btn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/test1_btn"
         android:layout_width="145dp"
         android:layout_height="55dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:background="#2C009688"
         android:text="@string/strt_test_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/view_data_lv"
-        android:layout_width="399dp"
-        android:layout_height="413dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test2_btn"
-        app:layout_constraintVertical_bias="0.877" />
 
     <TextView
         android:id="@+id/decision_text"

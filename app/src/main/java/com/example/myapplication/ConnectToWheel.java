@@ -15,16 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -183,7 +179,6 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         mBTDevices = new ArrayList<>();
         btnStartConnection = (Button) findViewById(R.id.start_connection_btn);
         btnSend = (Button) findViewById(R.id.btnSend);
-
         etSend = (EditText) findViewById(R.id.editText);
 
         //Broadcasts when bond state changes (ie:pairing)
@@ -296,7 +291,6 @@ public class ConnectToWheel extends AppCompatActivity implements AdapterView.OnI
         }*/
         Thread check = new Thread(new checkForMessage());
         check.start();
-
     }
 
     public void EnableDisable_Discoverable() {
