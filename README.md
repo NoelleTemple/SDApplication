@@ -1,24 +1,26 @@
 # README
 
-This is version 0.3 of the app, just to clean it up from previous mistakes.
-
 ## Current Pages
 
 All pages have a home button in the top left that takes users back to the Main Page (excludes Main Page)
 
 ### Main
 
-1. Add User
+1. Start
+
 ** Takes User to User Profile Page
-2. Connect to Wheel XX
 
-** Takes User to Connecting to Wheel Page
-3. Start Driving XX
+2. About HUD 
 
-** Does nothing right now
-4. About HUD XX
+** Takes User to About Page
 
-** Takes User to About HUD page
+3. Test Data
+
+** Takes User to Test Data Page
+
+4. Test Alarm
+
+** Button toggles test alarm
 
 ### User Profile
 1. User Name
@@ -38,30 +40,27 @@ All pages have a home button in the top left that takes users back to the Main P
 ** Brings user to Connecting to Wheel Page
 
 ### Connecting to Wheel
-1. Message: Connecting to Wheel
-** To Drive Page (need to add actual connection)
+1. Make Device Available
+** First step to make device available via bluetooth
+2. Search for Device
+** Second Step to find device to connect to
+** Select pairing device
+3. Connect to Wheel
+** Creates the connection
 
-### Start Driving
-1. Message: Don't Text and Drive!
+4. Functionality to test bluetooth connection available.  Enter Data and select Send.  Logfile for each device should show input and output streams (ie messages received and sent).
 
 ### About HUD
-1. Paragraph doesn't want to work yet.
+1. Short description of the desired use of product
 
-
-### Profile Class
-Ranges:
-		M	F
-0	18-25 Max	78	75
-1	18-25 Min	58	55
-2	25-35 Max	75	72
-3	25-35 Min	55	50
-4	35-45 Max	70	69
-5	35-45 Min	50	48
-6	45-55 Max	66.5	68
-7	45-55 Min	46.5	47
-8	55-65 Max	64	64
-9	55-65 Min	42	43
-10	65-75 Max	65	60.5
-11	65-75 Min	40	39
-12	75+ Max	69	65.5
-13	75+ Min	38.5	33
+### Test Data
+* Four buttons to test data
+* Data comes in .csv files filled with R-R intervals located in the raw folder
+* First three buttons run single test files specified in java code
+* Fourth button runs three test files each with 90 different combinations of threshold values, LP filter values, pNN values, and window sizes
+** Total of 270 files
+** Threshold Values: 5, 10, 20, 25
+** LP Filter Values: 20, 25, 30
+** pNN Values: 30, 50
+** Window Sizes: 50, 100, 200
+* All decisions are outputted to a .csv file that is saved to the Android phone's internal storage
