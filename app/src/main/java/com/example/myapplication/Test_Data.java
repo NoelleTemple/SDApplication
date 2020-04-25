@@ -253,8 +253,8 @@ public class Test_Data extends AppCompatActivity {
             //Log.i("Algorithm Done", "Runtime: " + (endTime-startTime));
             Log.i("Algorithm Done " + Test_Numb, "\nLength of List: " +list.size() +
                     "\nWindow Length: " + window_length + "\nRuntime:" + (endTime - startTime) + "\nArray Length: " + dec_array.length);
-
-            String filename = "Test" + Test_Numb + "pNN" +  pNNx + "_LP" + (int) LP*100 + "window" + window_length + "_threshold" + (int) threshold + ".csv";
+            double LP_new = LP*100;
+            String filename = "Test" + Test_Numb + "pNN" +  pNNx + "_LP" + (int) LP_new + "window" + window_length + "_threshold" + (int) threshold + ".csv";
             WriteCSV(dec_array, Test_Numb, filename);
             window.clear();
     }
